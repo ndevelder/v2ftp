@@ -1350,6 +1350,7 @@ void v2ftp::correct()
 		//cEp1eqn = min(1.6*(epsilon_/epsilon_),(cEp1_ - 0.04)*(1.0+0.067*alpha_));
 		//cEp1eqn = min(1.6*(tpphi_/tpphi_),(cEp1_-0.1)*(1.0+0.137*alpha_)); 
 		cEp1eqn = min(2.0*(tpphi_/tpphi_),(cEp1_-0.2)*(1.0+0.285*alpha_));
+		cEp1eqn = min(2.0*(tpphi_/tpphi_),(cEp1_-0.11)*(1.0+0.15*alpha_));
 	}
 	
 	
@@ -1488,7 +1489,7 @@ void v2ftp::correct()
 	}
 	
 	if(fastPsType_.value() == 2.0){
-        fastPS = cP2_*tpphi_*GdK;
+        fastPS = eC4_*cP2_*tpphi_*GdK;
 	}
 
 	if(fastPsType_.value() == 3.0){
@@ -1597,7 +1598,7 @@ void v2ftp::correct()
       - fvm::Sp(cP1_*(1.0-alpha_)*epsHat_,tppsi_)
       
 	  // Dissipation
-	  - fvm::Sp(0.5*alpha_*epsHat_,tppsi_)
+	  - fvm::Sp(cD1_*alpha_*epsHat_,tppsi_)
 	  //+ cD3_*(2*alpha_-1.0)*tpphi_*vorticity_
 	  
 	  // Gradients
