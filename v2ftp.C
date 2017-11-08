@@ -1384,17 +1384,7 @@ void v2ftp::correct()
 
 	
 
-	//*************************************//
-    // Calculate eddy viscosity
-    //*************************************//
-    
-    if(solveNut_ == "true")
-    {       
-		nut_ = cMu_*k_*tpphi_*T;	  
-        nut_ = min(nut_,nutRatMax_*nu()); 
-		nut_.correctBoundaryConditions();
-        bound(nut_,nut0);
-    }	
+
 	
 	
 
@@ -1615,6 +1605,18 @@ void v2ftp::correct()
     }
 
 
+	
+	//*************************************//
+    // Calculate eddy viscosity
+    //*************************************//
+    
+    if(solveNut_ == "true")
+    {       
+		nut_ = cMu_*k_*tpphi_*T;	  
+        nut_ = min(nut_,nutRatMax_*nu()); 
+		nut_.correctBoundaryConditions();
+        bound(nut_,nut0);
+    }	
 	
 	
     //*************************************//   
