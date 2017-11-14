@@ -1203,6 +1203,7 @@ void v2ftp::correct()
         bound(epsilon_, epsilonSmall_);
 		bound(tpphi_,tph0);
 		bound(nut_,nut0);
+		bound(f_,f0);
     }
 	
 	
